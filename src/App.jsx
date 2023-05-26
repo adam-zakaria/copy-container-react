@@ -46,7 +46,7 @@ function App() {
   const [code, setCode] = useState(null);
   const [setup, setSetup] = useState(null);
   const [lang, setLang] = useState('Clojure')
-  const [type, setType] = useState('Crawler')
+  const [type, setType] = useState('Setup')
 
   function updateUI(){
     if (lang === 'Clojure'){
@@ -133,7 +133,19 @@ function App() {
               */
               }
               {
-                code ? <CodeHighlight>{code}</CodeHighlight> : null
+                code ? <CodeHighlight>{code}</CodeHighlight> : 
+                setup ? 
+                  <>
+                  <div>
+                    <div>Interpreter</div>
+                    <code>$ clj</code>
+                  </div>
+                  <div>
+                    <div>Run a program</div>
+                    <code>$ clj file.clj</code>
+                  </div>
+                  </>
+                  : null
               }
               {/*
               setup ? 
