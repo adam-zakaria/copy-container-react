@@ -9,29 +9,29 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { useEffect } from 'react';
 
-function l(x){
+function l(x) {
   console.log(x)
 }
 
-{/*code['lang']['type']='def main'*/}
+{/*code['lang']['type']='def main'*/ }
 
-    {/*}
+{/*}
     <SyntaxHighlighter language="javascript" style={docco}>
       {codeString}
     </SyntaxHighlighter>
   */}
 function App() {
   //const code = '';
-  const [code,setCode] = useState('');
-  const [lang,setLang] = useState('Clojure')
-  const [type,setType] = useState('Clojure')
+  const [code, setCode] = useState('');
+  const [lang, setLang] = useState('Clojure')
+  const [type, setType] = useState('Clojure')
 
   const handleChangeLang = (event) => {
     l('lang')
     setLang(event.target.value);
-    if(lang == 'Clojure' && type=='Crawler'){
+    if (lang == 'Clojure' && type == 'Crawler') {
       setCode(
-      `
+        `
       (ns crawler.core
         (:require [clj-http.client :as client]))
 
@@ -45,10 +45,10 @@ function App() {
     }
   };
 
-  useEffect(()=>{
-    if(lang == 'Clojure' && type=='Crawler'){
+  useEffect(() => {
+    if (lang == 'Clojure' && type == 'Crawler') {
       setCode(
-      `
+        `
       (ns crawler.core
         (:require [clj-http.client :as client]))
 
@@ -61,7 +61,7 @@ function App() {
       )
     }
 
-  },[type])
+  }, [type])
 
   const handleChangeType = (event) => {
     setType(event.target.value);
@@ -70,16 +70,17 @@ function App() {
   };
 
   return (
-
-
-    <div class='flex justify-center'>
-      <div class="flex justify-center p-4 shadow rounded">
+    <>
+    <div>adam</div>
+    <p>adam</p>
+    <div class='mx-auto my-0 flex '>
+      <div class="flex p-4 shadow rounded">
         <div class='flex flex-col gap-y-4'>
 
           <div class='flex flex-row gap-4' >
             <div>
               {/* if the language type changes, changes the content */}
-              <label for="cars">Language</label>
+              <label className='p-[10px]' for="">Language</label>
               <select value={lang} onChange={handleChangeLang}>
                 <option value="Clojure">Clojure</option>
                 <option value="Python">Python</option>
@@ -90,7 +91,7 @@ function App() {
 
             <div>
               {/* if the program type changes, changes the content */}
-              <label for="Operating System">Program Type</label>
+              <label className='m-[10px]' for="">Program Type</label>
               <select className='' onChange={handleChangeType} >
                 <option value="Setup">Setup</option>
                 <option value="Crawler">Crawler</option>
@@ -100,9 +101,11 @@ function App() {
             </div>
           </div>
           <div>
-          <img className='w-[50px]' src={clojureLogo} alt="Clojure logo" />
-  {code}
-</div>
+            <img className='m-[10px] w-[50px]' src={clojureLogo} alt="Clojure logo" />
+            <div className='w-[400px]'>
+              {code}
+            </div>
+          </div>
 
           <div>
             <div>Interpreter</div>
@@ -118,7 +121,7 @@ function App() {
       </div>
       {/*<div class='flex-col box'>*/}
     </div>
-
+    </>
   );
 }
 
