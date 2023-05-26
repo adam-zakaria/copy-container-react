@@ -7,7 +7,12 @@ import logo from './logo.svg';
 import clojureLogo from './clojure-logo-120b.png';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import hljs from 'highlight.js/lib/core';
+import 'highlight.js/styles/stackoverflow-dark.css';
+import 'highlight.js/lib/languages/clojure'; // Example language import
+import 'highlight.js/lib/languages/javascript'; // Example language import
+
 
 function l(x) {
   console.log(x)
@@ -20,16 +25,32 @@ function l(x) {
       {codeString}
     </SyntaxHighlighter>
   */}
+  function CodeHighlight(props) {
+    const codeRef = useRef();
+  
+    useEffect(() => {
+      hljs.highlightBlock(codeRef.current);
+    }, []);
+  
+    return (
+      <pre>
+        <code ref={codeRef} className="javascript">
+          {props.children}
+        </code>
+      </pre>
+    );
+  }
+  
 function App() {
   //const code = '';
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(null);
+  const [setup, setSetup] = useState(null);
   const [lang, setLang] = useState('Clojure')
-  const [type, setType] = useState('Clojure')
+  const [type, setType] = useState('Crawler')
 
-  const handleChangeLang = (event) => {
-    l('lang')
-    setLang(event.target.value);
-    if (lang == 'Clojure' && type == 'Crawler') {
+  function updateUI(){
+    if (lang === 'Clojure'){
+      if (type === 'Crawler'){
       setCode(
         `
       (ns crawler.core
@@ -42,26 +63,32 @@ function App() {
       (fetch-url "https://example.com")
       `
       )
+      setSetup(null)
+      }
+      else if (type === 'Setup'){
+        setCode(null);
+        setSetup(
+      `<div>
+        <div>Interpreter</div>
+        <code>$ clj</code>
+      </div>
+      <div>
+        <div>Run a program</div>
+        <code>$ clj file.clj</code>
+      </div>`
+        );
+      }
     }
+
+  }
+
+  const handleChangeLang = (event) => {
+    setLang(event.target.value);
   };
 
   useEffect(() => {
-    if (lang == 'Clojure' && type == 'Crawler') {
-      setCode(
-        `
-      (ns crawler.core
-        (:require [clj-http.client :as client]))
-
-      (defn fetch-url [url]
-        (let [response (client/get url)]
-          (println (:body response))))
-          
-      (fetch-url "https://example.com")
-      `
-      )
-    }
-
-  }, [type])
+    updateUI()
+  }, [lang,type])
 
   const handleChangeType = (event) => {
     setType(event.target.value);
@@ -71,10 +98,8 @@ function App() {
 
   return (
     <>
-    <div>adam</div>
-    <p>adam</p>
-    <div class='mx-auto my-0 flex '>
-      <div class="flex p-4 shadow rounded">
+    <div class='mx-auto my-0 max-w-[700px]'>
+      <div class="flex justify-center p-4 shadow rounded">
         <div class='flex flex-col gap-y-4'>
 
           <div class='flex flex-row gap-4' >
@@ -102,19 +127,25 @@ function App() {
           </div>
           <div>
             <img className='m-[10px] w-[50px]' src={clojureLogo} alt="Clojure logo" />
-            <div className='w-[400px]'>
-              {code}
+            <div className='w-[540px]'>
+              {/*
+                code ? code : null
+              */
+              }
+              {
+                code ? <CodeHighlight>{code}</CodeHighlight> : null
+              }
+              {/*
+              setup ? 
+              {setup}
+              : code ? 
+                {code}
+                : null
+                */
+              }
             </div>
           </div>
 
-          <div>
-            <div>Interpreter</div>
-            <code>$ clj</code>
-          </div>
-          <div>
-            <div>Run a program</div>
-            <code>$ clj file.clj</code>
-          </div>
         </div>
 
 
