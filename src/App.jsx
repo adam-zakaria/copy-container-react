@@ -19,7 +19,20 @@ function l(x) {
 }
 
 function renderSetup(){
-  return 
+  //if(os === 'MacOS'){
+    return(
+        <>
+        <div>
+          <div>Interpreter</div>
+          <code>$ clj</code>
+        </div>
+        <div>
+          <div>Run a program</div>
+          <code>$ clj file.clj</code>
+        </div>
+        </>
+    )
+  //}
 }
 
 {/*code['lang']['type']='def main'*/ }
@@ -53,8 +66,8 @@ function App() {
   const [type, setType] = useState('Setup')
   const [os, setOs] = useState('MacOS')
 
-  function handleChangeOS(event){
-    setLang(event.target.value);
+  function handleChangeOs(event){
+    setOs(event.target.value);
   }
 
   function updateUI(){
@@ -107,6 +120,12 @@ function App() {
     updateUI()
   }, [lang,type])
 
+  /*
+  useEffect(() => {
+    updateUI()
+  }, [os])
+  */
+
   const handleChangeType = (event) => {
     setType(event.target.value);
     l(`${lang} lang`)
@@ -142,7 +161,7 @@ function App() {
 
             <div>
               <label className='m-[10px]' for="">Operating System</label>
-              <select className='' onChange={handleChangeOS} >
+              <select className='' onChange={handleChangeOs} >
                 <option value="MacOS">MacOS</option>
               </select>
             </div>
@@ -158,17 +177,7 @@ function App() {
               {
                 code ? <CodeHighlight>{code}</CodeHighlight> : 
                 setup ? 
-                   
-                  <>
-                  <div>
-                    <div>Interpreter</div>
-                    <code>$ clj</code>
-                  </div>
-                  <div>
-                    <div>Run a program</div>
-                    <code>$ clj file.clj</code>
-                  </div>
-                  </>
+                   renderSetup()
                   : null
               }
               {/*
