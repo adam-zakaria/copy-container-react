@@ -18,6 +18,10 @@ function l(x) {
   console.log(x)
 }
 
+function renderSetup(){
+  return 
+}
+
 {/*code['lang']['type']='def main'*/ }
 
 {/*}
@@ -47,6 +51,11 @@ function App() {
   const [setup, setSetup] = useState(null);
   const [lang, setLang] = useState('Clojure')
   const [type, setType] = useState('Setup')
+  const [os, setOs] = useState('MacOS')
+
+  function handleChangeOS(event){
+    setLang(event.target.value);
+  }
 
   function updateUI(){
     if (lang === 'Clojure'){
@@ -79,6 +88,14 @@ function App() {
         );
       }
     }
+    if (lang === 'Javascript'){
+      if (type === 'Crawler'){
+
+      }
+      if (type === 'Setup'){
+
+      }
+    }
 
   }
 
@@ -98,13 +115,12 @@ function App() {
 
   return (
     <>
-    <div class='mx-auto my-0 max-w-[700px]'>
+    <div class='mx-auto my-0'>
       <div class="flex justify-center p-4 shadow rounded">
         <div class='flex flex-col gap-y-4'>
 
-          <div class='flex flex-row gap-4' >
+          <div class='flex gap-4' >
             <div>
-              {/* if the language type changes, changes the content */}
               <label className='p-[10px]' for="">Language</label>
               <select value={lang} onChange={handleChangeLang}>
                 <option value="Clojure">Clojure</option>
@@ -115,7 +131,6 @@ function App() {
             </div>
 
             <div>
-              {/* if the program type changes, changes the content */}
               <label className='m-[10px]' for="">Program Type</label>
               <select className='' onChange={handleChangeType} >
                 <option value="Setup">Setup</option>
@@ -124,6 +139,14 @@ function App() {
                 <option value="Sockets">Sockets</option>
               </select>
             </div>
+
+            <div>
+              <label className='m-[10px]' for="">Operating System</label>
+              <select className='' onChange={handleChangeOS} >
+                <option value="MacOS">MacOS</option>
+              </select>
+            </div>
+
           </div>
           <div>
             <img className='m-[10px] w-[50px]' src={clojureLogo} alt="Clojure logo" />
@@ -135,6 +158,7 @@ function App() {
               {
                 code ? <CodeHighlight>{code}</CodeHighlight> : 
                 setup ? 
+                   
                   <>
                   <div>
                     <div>Interpreter</div>
