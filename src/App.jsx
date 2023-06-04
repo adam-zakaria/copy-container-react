@@ -14,6 +14,7 @@ import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/stackoverflow-dark.css';
 import 'highlight.js/lib/languages/clojure'; // Example language import
 import 'highlight.js/lib/languages/javascript'; // Example language import
+import 'highlight.js/lib/languages/python'; // Example language import
 
 let check =
   <svg className='h-[50%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -134,6 +135,29 @@ function App() {
 
       }
     }
+    if (lang === 'Python') {
+      if (type === 'Crawler') {
+        setCode(`
+        import requests
+        from bs4 import BeautifulSoup
+        
+        def crawl(url):
+            response = requests.get(url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+        
+            for link in soup.find_all('a'):  # Find all links
+                href = link.get('href')
+                if href and href.startswith('http'):  # Only print absolute URLs
+                    print(href)
+        
+        # Use the function
+        crawl('http://example.com')`)
+        
+      }
+      if (type === 'Setup') {
+
+      }
+    }
 
   }
 
@@ -141,8 +165,11 @@ function App() {
     setLang(event.target.value);
   };
 
+  var icon;
   useEffect(() => {
     updateUI()
+    if lang =='Clojure'
+    icon=
   }, [lang, type])
 
   /*
