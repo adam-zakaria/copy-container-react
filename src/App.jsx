@@ -61,12 +61,8 @@ function App() {
   var [lang, setLang] = useState('Clojure')
   var [type, setType] = useState('Setup')
   var [os, setOs] = useState('MacOS')
+  var [copyToggle, setCopyToggle] = useState(false)
 
-  function copyToClipboard(){
-    console.log(codeRef.current)
-    //navigator.clipboard.writeText(codeRef.current.textContent)
-    navigator.clipboard.writeText(code)
-  }
 
   function handleChangeOs(event){
     setOs(event.target.value);
@@ -145,6 +141,15 @@ function App() {
   }, [os])
   */
 
+  function copyCode(){
+    //navigator.clipboard.writeText(codeRef.current.textContent)
+    navigator.clipboard.writeText(code)
+    setCopyToggle(true);
+    setTimeout(() => {
+      setCopyToggle(false);
+    }, 2000);
+  }
+
   var handleChangeType = (event) => {
     setType(event.target.value);
     l(`${lang} lang`)
@@ -186,13 +191,25 @@ function App() {
             </div>
 
           </div>
-          <div className='w-[540px]'>
+          <div className='w-[px]'>
             <div className='flex justify-between'>
             <img className='m-[10px] w-[50px]' src={clojureLogo} alt="Clojure logo" />
             {/*check*/}
-            <div className='flex justify-center hover:cursor-pointer' onClick={copyToClipboard}>
-            {clipboard}
-            <div className='flex items-center justify-center'><p>Copy Code</p></div>
+            <div className='flex justify-center hover:cursor-pointer' onClick={copyCode}>
+              { copyToggle ? 
+
+              <>
+              {check}
+              <div className='flex items-center justify-center'><p>Copied!</p>
+              </div>
+     </> 
+      : 
+              <>
+              {clipboard}
+              <div className='flex items-center justify-center'><p>Copy Code</p>
+              </div>
+</>
+      }
   </div>
 
     </div>
