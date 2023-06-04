@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import Clipboard from './clipboard.svg'; // path to your SVG file
+
 import './App.css'
 
 import logo from './logo.svg';
@@ -13,27 +15,21 @@ import 'highlight.js/styles/stackoverflow-dark.css';
 import 'highlight.js/lib/languages/clojure'; // Example language import
 import 'highlight.js/lib/languages/javascript'; // Example language import
 
+  let check=
+<svg className='w-[30px]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <polyline points="20 6 9 17 4 12" />
+</svg>
+  let clipboard =
+      <svg className='inline-block w-[30px]' stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+      </svg>
+
 
 function l(x) {
   console.log(x)
 }
 
-function renderSetup(){
-  //if(os === 'MacOS'){
-    return(
-        <>
-        <div>
-          <div>Interpreter</div>
-          <code>$ clj</code>
-        </div>
-        <div>
-          <div>Run a program</div>
-          <code>$ clj file.clj</code>
-        </div>
-        </>
-    )
-  //}
-}
 
 {/*code['lang']['type']='def main'*/ }
 
@@ -43,7 +39,7 @@ function renderSetup(){
     </SyntaxHighlighter>
   */}
   function CodeHighlight(props) {
-    const codeRef = useRef();
+    var codeRef = useRef();
   
     useEffect(() => {
       hljs.highlightBlock(codeRef.current);
@@ -59,15 +55,38 @@ function renderSetup(){
   }
   
 function App() {
-  //const code = '';
-  const [code, setCode] = useState(null);
-  const [setup, setSetup] = useState(null);
-  const [lang, setLang] = useState('Clojure')
-  const [type, setType] = useState('Setup')
-  const [os, setOs] = useState('MacOS')
+  //var code = '';
+  var [code, setCode] = useState(null);
+  var [setup, setSetup] = useState(null);
+  var [lang, setLang] = useState('Clojure')
+  var [type, setType] = useState('Setup')
+  var [os, setOs] = useState('MacOS')
+
+  function copyToClipboard(){
+    console.log(codeRef.current)
+    //navigator.clipboard.writeText(codeRef.current.textContent)
+    navigator.clipboard.writeText(code)
+  }
 
   function handleChangeOs(event){
     setOs(event.target.value);
+  }
+
+  function renderSetup(){
+    if(os === 'MacOS'){
+      return(
+          <>
+          <div>
+            <div>Interpreter</div>
+            <code>$ clj</code>
+          </div>
+          <div>
+            <div>Run a program</div>
+            <code>$ clj file.clj</code>
+          </div>
+          </>
+      )
+    }
   }
 
   function updateUI(){
@@ -112,7 +131,7 @@ function App() {
 
   }
 
-  const handleChangeLang = (event) => {
+  var handleChangeLang = (event) => {
     setLang(event.target.value);
   };
 
@@ -126,7 +145,7 @@ function App() {
   }, [os])
   */
 
-  const handleChangeType = (event) => {
+  var handleChangeType = (event) => {
     setType(event.target.value);
     l(`${lang} lang`)
     l(`${type} type`)
@@ -167,9 +186,17 @@ function App() {
             </div>
 
           </div>
-          <div>
+          <div className='w-[540px]'>
+            <div className='flex justify-between'>
             <img className='m-[10px] w-[50px]' src={clojureLogo} alt="Clojure logo" />
-            <div className='w-[540px]'>
+            {/*check*/}
+            <div className='flex justify-center hover:cursor-pointer' onClick={copyToClipboard}>
+            {clipboard}
+            <div className='flex items-center justify-center'><p>Copy Code</p></div>
+  </div>
+
+    </div>
+            <div className=''>
               {/*
                 code ? code : null
               */
