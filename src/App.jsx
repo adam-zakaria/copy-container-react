@@ -15,15 +15,16 @@ import 'highlight.js/styles/stackoverflow-dark.css';
 import 'highlight.js/lib/languages/clojure'; // Example language import
 import 'highlight.js/lib/languages/javascript'; // Example language import
 
-  let check=
-<svg className='w-[30px]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <polyline points="20 6 9 17 4 12" />
-</svg>
-  let clipboard =
-      <svg className='inline-block w-[30px]' stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-      </svg>
+let check =
+  <svg className='h-[50%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+let clipboard =
+  //<svg className='inline-block w-[20px]' stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <svg className='inline-block h-[50%]' stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+  </svg>
 
 
 function l(x) {
@@ -38,22 +39,22 @@ function l(x) {
       {codeString}
     </SyntaxHighlighter>
   */}
-  function CodeHighlight(props) {
-    var codeRef = useRef();
-  
-    useEffect(() => {
-      hljs.highlightBlock(codeRef.current);
-    }, []);
-  
-    return (
-      <pre>
-        <code ref={codeRef} className="javascript">
-          {props.children}
-        </code>
-      </pre>
-    );
-  }
-  
+function CodeHighlight(props) {
+  var codeRef = useRef();
+
+  useEffect(() => {
+    hljs.highlightBlock(codeRef.current);
+  }, []);
+
+  return (
+    <pre>
+      <code ref={codeRef} className="javascript">
+        {props.children}
+      </code>
+    </pre>
+  );
+}
+
 function App() {
   //var code = '';
   var [code, setCode] = useState(null);
@@ -64,32 +65,41 @@ function App() {
   var [copyToggle, setCopyToggle] = useState(false)
 
 
-  function handleChangeOs(event){
+  function handleChangeOs(event) {
     setOs(event.target.value);
   }
 
-  function renderSetup(){
-    if(os === 'MacOS'){
-      return(
-          <>
+  function renderSetup() {
+    if (os === 'MacOS') {
+      return (
+        <>
           <div>
-            <div>Interpreter</div>
-            <code>$ clj</code>
+
+            <div>Install</div>
+            <CodeHighlight>
+              <code>brew install clojure</code>
+            </CodeHighlight>
+            <div>Launch an interpreter</div>
+            <CodeHighlight>
+              <code>clj</code>
+            </CodeHighlight>
           </div>
           <div>
             <div>Run a program</div>
-            <code>$ clj file.clj</code>
+            <CodeHighlight>
+              <code>clj file.clj</code>
+            </CodeHighlight>
           </div>
-          </>
+        </>
       )
     }
   }
 
-  function updateUI(){
-    if (lang === 'Clojure'){
-      if (type === 'Crawler'){
-      setCode(
-        `
+  function updateUI() {
+    if (lang === 'Clojure') {
+      if (type === 'Crawler') {
+        setCode(
+          `
       (ns crawler.core
         (:require [clj-http.client :as client]))
 
@@ -99,13 +109,13 @@ function App() {
           
       (fetch-url "https://example.com")
       `
-      )
-      setSetup(null)
+        )
+        setSetup(null)
       }
-      else if (type === 'Setup'){
+      else if (type === 'Setup') {
         setCode(null);
         setSetup(
-      `<div>
+          `<div>
         <div>Interpreter</div>
         <code>$ clj</code>
       </div>
@@ -116,11 +126,11 @@ function App() {
         );
       }
     }
-    if (lang === 'Javascript'){
-      if (type === 'Crawler'){
+    if (lang === 'Javascript') {
+      if (type === 'Crawler') {
 
       }
-      if (type === 'Setup'){
+      if (type === 'Setup') {
 
       }
     }
@@ -133,7 +143,7 @@ function App() {
 
   useEffect(() => {
     updateUI()
-  }, [lang,type])
+  }, [lang, type])
 
   /*
   useEffect(() => {
@@ -141,7 +151,7 @@ function App() {
   }, [os])
   */
 
-  function copyCode(){
+  function copyCode() {
     //navigator.clipboard.writeText(codeRef.current.textContent)
     navigator.clipboard.writeText(code)
     setCopyToggle(true);
@@ -158,89 +168,89 @@ function App() {
 
   return (
     <>
-    <div class='mx-auto my-0'>
-      <div class="flex justify-center p-4 shadow rounded">
-        <div class='flex flex-col gap-y-4'>
+      <div class='mx-auto my-0'>
+        <div class="flex justify-center p-4 shadow rounded">
+          <div class='flex flex-col gap-y-4'>
 
-          <div class='flex gap-4' >
-            <div>
-              <label className='p-[10px]' for="">Language</label>
-              <select value={lang} onChange={handleChangeLang}>
-                <option value="Clojure">Clojure</option>
-                <option value="Python">Python</option>
-                <option value="Javascript">Javascript</option>
-              </select>
+            <div class='flex gap-4' >
+              <div>
+                <label className='p-[10px]' for="">Language</label>
+                <select value={lang} onChange={handleChangeLang}>
+                  <option value="Clojure">Clojure</option>
+                  <option value="Python">Python</option>
+                  <option value="Javascript">Javascript</option>
+                </select>
 
-            </div>
-
-            <div>
-              <label className='m-[10px]' for="">Program Type</label>
-              <select className='' onChange={handleChangeType} >
-                <option value="Setup">Setup</option>
-                <option value="Crawler">Crawler</option>
-                <option value="Server">Server</option>
-                <option value="Sockets">Sockets</option>
-              </select>
-            </div>
-
-            <div>
-              <label className='m-[10px]' for="">Operating System</label>
-              <select className='' onChange={handleChangeOs} >
-                <option value="MacOS">MacOS</option>
-              </select>
-            </div>
-
-          </div>
-          <div className='w-[px]'>
-            <div className='flex justify-between'>
-            <img className='m-[10px] w-[50px]' src={clojureLogo} alt="Clojure logo" />
-            {/*check*/}
-            <div className='flex justify-center hover:cursor-pointer' onClick={copyCode}>
-              { copyToggle ? 
-
-              <>
-              {check}
-              <div className='flex items-center justify-center'><p>Copied!</p>
               </div>
-     </> 
-      : 
-              <>
-              {clipboard}
-              <div className='flex items-center justify-center'><p>Copy Code</p>
-              </div>
-</>
-      }
-  </div>
 
-    </div>
-            <div className=''>
-              {/*
+              <div>
+                <label className='m-[10px]' for="">Program Type</label>
+                <select className='' onChange={handleChangeType} >
+                  <option value="Setup">Setup</option>
+                  <option value="Crawler">Crawler</option>
+                  <option value="Server">Server</option>
+                  <option value="Sockets">Sockets</option>
+                </select>
+              </div>
+
+              <div>
+                <label className='m-[10px]' for="">Operating System</label>
+                <select className='' onChange={handleChangeOs} >
+                  <option value="MacOS">MacOS</option>
+                </select>
+              </div>
+
+            </div>
+            <div className='w-[px]'>
+              <div className='flex justify-between bg-gray-200  rounded-t-md h-[40px] px-[10px]'>
+                <a className='hover:cursor-pointer' href='https://clojure.org/'><img className='hover:cursor-pointer h-[100%]' src={clojureLogo} alt="Clojure logo"></img></a>
+                {/*check*/}
+                <div className='flex items-center hover:cursor-pointer gap-[5px] text-[12px]' onClick={copyCode}>
+                  {copyToggle ?
+
+                    <>
+                      {check}
+                      <div className='flex items-center justify-center'><p>Copied!</p>
+                      </div>
+                    </>
+                    :
+                    <>
+                      {clipboard}
+                      <div className='flex items-center justify-center'><p className=''>Copy Code</p>
+                      </div>
+                    </>
+                  }
+                </div>
+
+              </div>
+              <div className=''>
+                {/*
                 code ? code : null
               */
-              }
-              {
-                code ? <CodeHighlight>{code}</CodeHighlight> : 
-                setup ? 
-                   renderSetup()
-                  : null
-              }
-              {/*
+                }
+                {
+                  code ? <CodeHighlight>{code}</CodeHighlight> :
+                    setup ?
+                      renderSetup()
+                      : null
+                }
+                {/*
               setup ? 
               {setup}
               : code ? 
                 {code}
                 : null
                 */
-              }
+                }
+              </div>
             </div>
+
           </div>
 
+
         </div>
-
-
+        {/*<div class='flex-col box'>*/}
       </div>
-      {/*<div class='flex-col box'>*/}
-    </div>
     </>
   );
 }
