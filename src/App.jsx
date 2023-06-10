@@ -2,38 +2,35 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Clipboard from './clipboard.svg'; // path to your SVG file
-
 import './App.css'
-
 import logo from './logo.svg';
 import clojureLogo from './clojure-logo-120b.png';
+import pythonLogo from './python-logo@2x.png';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import React, { useEffect, useRef } from 'react';
 import hljs from 'highlight.js/lib/core';
+//import hljs from 'highlight.js';
 import 'highlight.js/styles/stackoverflow-dark.css';
+/*
 import 'highlight.js/lib/languages/clojure'; // Example language import
 import 'highlight.js/lib/languages/javascript'; // Example language import
 import 'highlight.js/lib/languages/python'; // Example language import
+*/
 
 let check =
-  <svg className='h-[50%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg className='h-[50%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9D9E3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="20 6 9 17 4 12" />
   </svg>
 let clipboard =
-  //<svg className='inline-block w-[20px]' stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-  <svg className='inline-block h-[50%]' stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+  <svg className='inline-block h-[50%]' stroke="#D9D9E3" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
     <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
     <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
   </svg>
 
-
 function l(x) {
   console.log(x)
 }
-
-
-{/*code['lang']['type']='def main'*/ }
 
 {/*}
     <SyntaxHighlighter language="javascript" style={docco}>
@@ -45,30 +42,46 @@ function CodeHighlight(props) {
 
   useEffect(() => {
     hljs.highlightBlock(codeRef.current);
+    console.log(codeRef.current.textContent);
+    let result=hljs.highlightAuto(codeRef.current.textContent);
+    console.log(result.language);
+    console.log(result.relevance);
   }, []);
 
   return (
-    <pre>
-      <code ref={codeRef} className="javascript">
+    <pre className=''>
+      <code ref={codeRef} className=" javascript">
         {props.children}
       </code>
     </pre>
   );
 }
 
-function App() {
+
+function CodeBody(props) {
   //var code = '';
+  var [icon,setIcon]=useState(null);
   var [code, setCode] = useState(null);
   var [setup, setSetup] = useState(null);
   var [lang, setLang] = useState('Clojure')
+  var [logo, setLogo] = useState(clojureLogo)
   var [type, setType] = useState('Setup')
   var [os, setOs] = useState('MacOS')
   var [copyToggle, setCopyToggle] = useState(false)
 
 
+  function handleChangeType(event) {
+    setType(event.target.value);
+  }
+
   function handleChangeOs(event) {
     setOs(event.target.value);
   }
+
+  var handleChangeLang = (event) => {
+    setLang(event.target.value);
+  };
+
 
   function renderSetup() {
     if (os === 'MacOS') {
@@ -161,23 +174,6 @@ function App() {
 
   }
 
-  var handleChangeLang = (event) => {
-    setLang(event.target.value);
-  };
-
-  var icon;
-  useEffect(() => {
-    updateUI()
-    if lang =='Clojure'
-    icon=
-  }, [lang, type])
-
-  /*
-  useEffect(() => {
-    updateUI()
-  }, [os])
-  */
-
   function copyCode() {
     //navigator.clipboard.writeText(codeRef.current.textContent)
     navigator.clipboard.writeText(code)
@@ -187,11 +183,23 @@ function App() {
     }, 2000);
   }
 
-  var handleChangeType = (event) => {
-    setType(event.target.value);
-    l(`${lang} lang`)
-    l(`${type} type`)
-  };
+  useEffect(() => {
+    updateUI()
+    if (lang =='Clojure'){
+      setIcon(clojureLogo);
+    }
+    else if (lang =='Python'){
+      setIcon(pythonLogo);
+    }
+  }, [lang, type])
+
+  /*
+  useEffect(() => {
+    updateUI()
+  }, [os])
+  #343541
+  #00000
+  */
 
   return (
     <>
@@ -200,37 +208,16 @@ function App() {
           <div class='flex flex-col gap-y-4'>
 
             <div class='flex gap-4' >
-              <div>
-                <label className='p-[10px]' for="">Language</label>
-                <select value={lang} onChange={handleChangeLang}>
-                  <option value="Clojure">Clojure</option>
-                  <option value="Python">Python</option>
-                  <option value="Javascript">Javascript</option>
-                </select>
 
-              </div>
 
-              <div>
-                <label className='m-[10px]' for="">Program Type</label>
-                <select className='' onChange={handleChangeType} >
-                  <option value="Setup">Setup</option>
-                  <option value="Crawler">Crawler</option>
-                  <option value="Server">Server</option>
-                  <option value="Sockets">Sockets</option>
-                </select>
-              </div>
-
-              <div>
-                <label className='m-[10px]' for="">Operating System</label>
-                <select className='' onChange={handleChangeOs} >
-                  <option value="MacOS">MacOS</option>
-                </select>
-              </div>
 
             </div>
-            <div className='w-[px]'>
-              <div className='flex justify-between bg-gray-200  rounded-t-md h-[40px] px-[10px]'>
-                <a className='hover:cursor-pointer' href='https://clojure.org/'><img className='hover:cursor-pointer h-[100%]' src={clojureLogo} alt="Clojure logo"></img></a>
+            <div className='w-[800px] rounded-b'>
+              <div className='flex justify-between bg-[#343541]  rounded-t-md h-[40px] px-[16px]'>
+                  <div className='flex items-center justify-center text-[#D9D9E3]'><p className=''>python</p>
+                  </div>
+                {/*
+                <a className='hover:cursor-pointer' href='https://clojure.org/'><img className='hover:cursor-pointer h-[100%]' src={clojureLogo} alt="Clojure logo"></img></a>*/}
                 {/*check*/}
                 <div className='flex items-center hover:cursor-pointer gap-[5px] text-[12px]' onClick={copyCode}>
                   {copyToggle ?
@@ -243,32 +230,17 @@ function App() {
                     :
                     <>
                       {clipboard}
-                      <div className='flex items-center justify-center'><p className=''>Copy Code</p>
+                      <div className='flex items-center justify-center text-[#D9D9E3]'><p className=''>Copy Code</p>
                       </div>
                     </>
                   }
                 </div>
 
               </div>
-              <div className=''>
-                {/*
-                code ? code : null
-              */
-                }
-                {
-                  code ? <CodeHighlight>{code}</CodeHighlight> :
-                    setup ?
-                      renderSetup()
-                      : null
-                }
-                {/*
-              setup ? 
-              {setup}
-              : code ? 
-                {code}
-                : null
-                */
-                }
+              <div className='rounded-b-md overflow-hidden'>
+                <CodeHighlight>
+                  {props.children}
+                </CodeHighlight> 
               </div>
             </div>
 
@@ -282,4 +254,23 @@ function App() {
   );
 }
 
+function App(){
+  return(
+    <div>
+    <CodeBody>
+      {`
+      import python
+      `}
+  </CodeBody>
+  </div>
+  ) 
+}
+
 export default App;
+
+//let codeElement = document.querySelector('code.javascript');
+//
+//// Get the text content
+//let codeText = codeElement.textContent;
+//
+//console.log(codeText);

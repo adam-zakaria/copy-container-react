@@ -2,10 +2,18 @@
 `npm run dev`
 
 # current
-* use chatgpt for all this boilerplate! not text snippets, not functions, natural language interface!
-* clipboard
-* https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard
-* need to focus on setup, in some ways it's the most important because it's kind of the biggest barrier to usage (the initial getting started)
+you have copied try to this repo. reduce the code until it's just the code copy component that you want. 
 
-# More notes
-* a cool idea is more generally a database of chatgpt history and whether it was right or not, maybe fixing the answer to be correct
+focus on this chunk:
+                {
+                  code ? <CodeHighlight>{code}</CodeHighlight> :
+                    setup ?
+                      renderSetup()
+                      : null
+                }
+    Don't conditionally render code if it's there, render anything that is passed in as a child I think... props.children
+
+    <CodeCopy>
+    import bs4
+    print python
+    </CodeCopy>
