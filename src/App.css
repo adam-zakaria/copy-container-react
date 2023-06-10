@@ -9,6 +9,10 @@ select:hover {
   cursor: pointer;
 }
 
+.hljs{
+  padding:0px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Clipboard from './clipboard.svg'; // path to your SVG file
-import './App.css'
 import logo from './logo.svg';
 import clojureLogo from './clojure-logo-120b.png';
 import pythonLogo from './python-logo@2x.png';
@@ -12,6 +11,7 @@ import React, { useEffect, useRef } from 'react';
 import hljs from 'highlight.js/lib/core';
 //import hljs from 'highlight.js';
 import 'highlight.js/styles/stackoverflow-dark.css';
+import './App.css'
 /*
 import 'highlight.js/lib/languages/clojure'; // Example language import
 import 'highlight.js/lib/languages/javascript'; // Example language import
@@ -50,9 +50,9 @@ function CodeHighlight(props) {
 
   return (
     <pre className=''>
-      <code ref={codeRef} className=" javascript">
-        {props.children}
-      </code>
+<code ref={codeRef} className="px-[16px]">
+{props.children}
+</code>
     </pre>
   );
 }
@@ -203,16 +203,10 @@ function CodeBody(props) {
 
   return (
     <>
-      <div class='mx-auto my-0'>
-        <div class="flex justify-center p-4 shadow rounded">
-          <div class='flex flex-col gap-y-4'>
+        
+          
 
-            <div class='flex gap-4' >
-
-
-
-            </div>
-            <div className='w-[800px] rounded-b'>
+            <div className='rounded-b'>
               <div className='flex justify-between bg-[#343541]  rounded-t-md h-[40px] px-[16px]'>
                   <div className='flex items-center justify-center text-[#D9D9E3]'><p className=''>python</p>
                   </div>
@@ -244,25 +238,22 @@ function CodeBody(props) {
               </div>
             </div>
 
-          </div>
+          
 
 
-        </div>
+        
         {/*<div class='flex-col box'>*/}
-      </div>
     </>
   );
 }
 
 function App(){
   return(
-    <div>
     <CodeBody>
       {`
-      import python
+import python
       `}
   </CodeBody>
-  </div>
   ) 
 }
 
