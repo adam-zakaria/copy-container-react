@@ -32,20 +32,12 @@ function l(x) {
   console.log(x)
 }
 
-{/*}
-    <SyntaxHighlighter language="javascript" style={docco}>
-      {codeString}
-    </SyntaxHighlighter>
-  */}
 function CodeHighlight(props) {
   var codeRef = useRef();
 
   useEffect(() => {
     hljs.highlightBlock(codeRef.current);
-    console.log(codeRef.current.textContent);
     let result=hljs.highlightAuto(codeRef.current.textContent);
-    console.log(result.language);
-    console.log(result.relevance);
   }, []);
 
   return (
@@ -208,7 +200,7 @@ function CodeBody(props) {
 
             <div className='rounded-b'>
               <div className='flex justify-between bg-[#343541]  rounded-t-md h-[40px] px-[16px]'>
-                  <div className='flex items-center justify-center text-[#D9D9E3]'><p className=''>python</p>
+                  <div className='flex items-center justify-center text-[#D9D9E3]'><p className=''>{props.lang}</p>
                   </div>
                 {/*
                 <a className='hover:cursor-pointer' href='https://clojure.org/'><img className='hover:cursor-pointer h-[100%]' src={clojureLogo} alt="Clojure logo"></img></a>*/}
@@ -218,7 +210,7 @@ function CodeBody(props) {
 
                     <>
                       {check}
-                      <div className='flex items-center justify-center'><p>Copied!</p>
+                      <div className='flex items-center justify-center text-[#D9D9E3]'><p>Copied!</p>
                       </div>
                     </>
                     :
@@ -249,19 +241,33 @@ function CodeBody(props) {
 
 function App(){
   return(
-    <CodeBody>
-      {`
-import python
-      `}
+    <CodeBody lang='python'>
+{` (ns crawler.core
+  (:require [clj-http.client :as client]))
+
+(defn fetch-url [url]
+  (let [response (client/get url)]
+    (println (:body response))))
+    
+(fetch-url "https://example.com")
+`}
   </CodeBody>
   ) 
 }
 
 export default App;
 
-//let codeElement = document.querySelector('code.javascript');
-//
-//// Get the text content
-//let codeText = codeElement.textContent;
-//
-//console.log(codeText);
+    /*
+    <pre>
+    <code>
+      <span>test</span>
+    </code>
+    </pre>
+
+let codeElement = document.querySelector('code.javascript');
+
+// Get the text content
+let codeText = codeElement.textContent;
+
+console.log(codeText);
+    */
