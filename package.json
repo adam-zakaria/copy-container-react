@@ -1,6 +1,6 @@
 {
-  "name": "try",
-  "private": true,
+  "name": "copy-code-react",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {

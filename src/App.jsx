@@ -1,15 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import Clipboard from './clipboard.svg'; // path to your SVG file
-import logo from './logo.svg';
-import clojureLogo from './clojure-logo-120b.png';
-import pythonLogo from './python-logo@2x.png';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+//import SyntaxHighlighter from 'react-syntax-highlighter';
 import React, { useEffect, useRef } from 'react';
-import hljs from 'highlight.js/lib/core';
-//import hljs from 'highlight.js';
+//import hljs from 'highlight.js/lib/core';
+import hljs from 'highlight.js';
+//import 'highlight.js/styles/github.css';  // import preferred style
 import 'highlight.js/styles/stackoverflow-dark.css';
 import './App.css'
 /*
@@ -42,7 +37,7 @@ function CodeHighlight(props) {
 
   return (
     <pre className=''>
-<code ref={codeRef} className="px-[16px]">
+<code ref={codeRef} className={`language-${props.lang} px-[16px]`}>
 {props.children}
 </code>
     </pre>
@@ -51,12 +46,10 @@ function CodeHighlight(props) {
 
 
 function CodeBody(props) {
-  //var code = '';
   var [icon,setIcon]=useState(null);
   var [code, setCode] = useState(null);
   var [setup, setSetup] = useState(null);
   var [lang, setLang] = useState('Clojure')
-  var [logo, setLogo] = useState(clojureLogo)
   var [type, setType] = useState('Setup')
   var [os, setOs] = useState('MacOS')
   var [copyToggle, setCopyToggle] = useState(false)
@@ -74,100 +67,8 @@ function CodeBody(props) {
     setLang(event.target.value);
   };
 
-
-  function renderSetup() {
-    if (os === 'MacOS') {
-      return (
-        <>
-          <div>
-
-            <div>Install</div>
-            <CodeHighlight>
-              <code>brew install clojure</code>
-            </CodeHighlight>
-            <div>Launch an interpreter</div>
-            <CodeHighlight>
-              <code>clj</code>
-            </CodeHighlight>
-          </div>
-          <div>
-            <div>Run a program</div>
-            <CodeHighlight>
-              <code>clj file.clj</code>
-            </CodeHighlight>
-          </div>
-        </>
-      )
-    }
-  }
-
-  function updateUI() {
-    if (lang === 'Clojure') {
-      if (type === 'Crawler') {
-        setCode(
-          `
-      (ns crawler.core
-        (:require [clj-http.client :as client]))
-
-      (defn fetch-url [url]
-        (let [response (client/get url)]
-          (println (:body response))))
-          
-      (fetch-url "https://example.com")
-      `
-        )
-        setSetup(null)
-      }
-      else if (type === 'Setup') {
-        setCode(null);
-        setSetup(
-          `<div>
-        <div>Interpreter</div>
-        <code>$ clj</code>
-      </div>
-      <div>
-        <div>Run a program</div>
-        <code>$ clj file.clj</code>
-      </div>`
-        );
-      }
-    }
-    if (lang === 'Javascript') {
-      if (type === 'Crawler') {
-
-      }
-      if (type === 'Setup') {
-
-      }
-    }
-    if (lang === 'Python') {
-      if (type === 'Crawler') {
-        setCode(`
-        import requests
-        from bs4 import BeautifulSoup
-        
-        def crawl(url):
-            response = requests.get(url)
-            soup = BeautifulSoup(response.text, 'html.parser')
-        
-            for link in soup.find_all('a'):  # Find all links
-                href = link.get('href')
-                if href and href.startswith('http'):  # Only print absolute URLs
-                    print(href)
-        
-        # Use the function
-        crawl('http://example.com')`)
-        
-      }
-      if (type === 'Setup') {
-
-      }
-    }
-
-  }
-
   function copyCode() {
-    //navigator.clipboard.writeText(codeRef.current.textContent)
+    //navigator.clipboard.writeText(codeRef.current.textContent)*
     navigator.clipboard.writeText(code)
     setCopyToggle(true);
     setTimeout(() => {
@@ -175,36 +76,12 @@ function CodeBody(props) {
     }, 2000);
   }
 
-  useEffect(() => {
-    updateUI()
-    if (lang =='Clojure'){
-      setIcon(clojureLogo);
-    }
-    else if (lang =='Python'){
-      setIcon(pythonLogo);
-    }
-  }, [lang, type])
-
-  /*
-  useEffect(() => {
-    updateUI()
-  }, [os])
-  #343541
-  #00000
-  */
-
   return (
     <>
-        
-          
-
             <div className='rounded-b'>
               <div className='flex justify-between bg-[#343541]  rounded-t-md h-[40px] px-[16px]'>
                   <div className='flex items-center justify-center text-[#D9D9E3]'><p className=''>{props.lang}</p>
                   </div>
-                {/*
-                <a className='hover:cursor-pointer' href='https://clojure.org/'><img className='hover:cursor-pointer h-[100%]' src={clojureLogo} alt="Clojure logo"></img></a>*/}
-                {/*check*/}
                 <div className='flex items-center hover:cursor-pointer gap-[5px] text-[12px]' onClick={copyCode}>
                   {copyToggle ?
 
@@ -224,7 +101,7 @@ function CodeBody(props) {
 
               </div>
               <div className='rounded-b-md overflow-hidden'>
-                <CodeHighlight>
+                <CodeHighlight lang={props.lang}>
                   {props.children}
                 </CodeHighlight> 
               </div>
@@ -242,32 +119,20 @@ function CodeBody(props) {
 function App(){
   return(
     <CodeBody lang='python'>
-{` (ns crawler.core
-  (:require [clj-http.client :as client]))
+{`import requests
+from bs4 import BeautifulSoup
 
-(defn fetch-url [url]
-  (let [response (client/get url)]
-    (println (:body response))))
-    
-(fetch-url "https://example.com")
+def crawl(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    for title in soup.find_all('h2'):  # assuming titles are within h2 tags
+        print(title.get_text())
+
+crawl('http://www.blogsite.com')
 `}
   </CodeBody>
   ) 
 }
 
 export default App;
-
-    /*
-    <pre>
-    <code>
-      <span>test</span>
-    </code>
-    </pre>
-
-let codeElement = document.querySelector('code.javascript');
-
-// Get the text content
-let codeText = codeElement.textContent;
-
-console.log(codeText);
-    */
