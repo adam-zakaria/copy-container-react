@@ -1,5 +1,3 @@
-# Run
-`npm run dev`
+I AM TRYING TO FIGURE OUT HOW GOD DAMN PACKAGES WORK, SO THIS IS NOT YET WORKING
 
-# current
-i'm not sure highlighting is optimal. the code classname i.e. python should exist when highlightblock gets called, 
+This is a chatgpt code copy clone. I have the code working locally, so if you want a copy email adam.p.zakaria@gmail.com. Hopefully I can figure out this package situation in the next week.
