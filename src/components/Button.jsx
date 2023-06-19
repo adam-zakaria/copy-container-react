@@ -1,7 +1,8 @@
 import React from 'react';
+import './App.css'
 const Button = (props) => {
    return (
-      <button className={`btn btn--${props.kind} CTA`}
+      <button className={`text-[#F824e2] btn btn--${props.kind} CTA`}
         data-id={props.id}
         type={props.type}
         name={props.name}
