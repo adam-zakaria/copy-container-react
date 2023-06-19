@@ -6,7 +6,7 @@ import React, { useEffect, useRef } from 'react';
 import hljs from 'highlight.js';
 //import 'highlight.js/styles/github.css';  // import preferred style
 import 'highlight.js/styles/stackoverflow-dark.css';
-import './App.css'
+import './dist/App.css'
 /*
 import 'highlight.js/lib/languages/clojure'; // Example language import
 import 'highlight.js/lib/languages/javascript'; // Example language import
