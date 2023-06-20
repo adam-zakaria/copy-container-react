@@ -1,17 +1,9 @@
 import { useState } from 'react'
 import Clipboard from './clipboard.svg'; // path to your SVG file
-//import SyntaxHighlighter from 'react-syntax-highlighter';
 import React, { useEffect, useRef } from 'react';
-//import hljs from 'highlight.js/lib/core';
 import hljs from 'highlight.js';
-//import 'highlight.js/styles/github.css';  // import preferred style
 import 'highlight.js/styles/stackoverflow-dark.css';
 import './dist/App.css'
-/*
-import 'highlight.js/lib/languages/clojure'; // Example language import
-import 'highlight.js/lib/languages/javascript'; // Example language import
-import 'highlight.js/lib/languages/python'; // Example language import
-*/
 
 let check =
   <svg className='h-[50%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9D9E3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -106,12 +98,6 @@ function CodeBody(props) {
                 </CodeHighlight> 
               </div>
             </div>
-
-          
-
-
-        
-        {/*<div class='flex-col box'>*/}
     </>
   );
 }
