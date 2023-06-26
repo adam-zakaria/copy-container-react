@@ -4,6 +4,7 @@ The component can also be used to display text without syntax highlighting.
 
 Here's an example of the component in use:
 
+```
 function App(){
   return(
     <CopyContainer lang='python'>
@@ -22,6 +23,7 @@ crawl('http://www.blogsite.com')
   </CopyContainer>
   ) 
 } 
+```
 
 Your text needs to be within braces (to start a 'jsx expression' AKA javascript) within grave accent marks (to start a multiline string) and needs to be a child of Copyontainer, as shown above.
 
@@ -34,7 +36,20 @@ import 'highlight.js/styles/stackoverflow-dark.css';
 
 # Override css 
 Use the following classes in your own css to style parts of the UI
-.text-lang, .text-copy, .top-bar, .code-body, .check, .clipboard Let me know if anything should be added. Here's an example:
+
+.text-lang{}, .text-copy{}, .top-bar{}, .code-body{}, .check{}, .clipboard{} Let me know if anything should be added. Here's an example:
+
+```css
+.clipboard{
+  stroke: #C71585;
+}
+.top-bar{
+  background-color: #3CB371;
+}
+.text-body{
+  background-color: whitesmoke;
+}
+```
 
 The syntax highlighting library used by this component is highlight.js and the style is stackoverflow-dark.css. Highlight.js tries to automatically detect the programming language of the code, but it hasn't been correct in my experience. See their docs for more information (you can examine the highlightjs object to see confidence scores the library gives for its predictions) Also, the highlighting seems a bit sparse in that.....
 
