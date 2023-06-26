@@ -1,3 +1,3 @@
-import CopyContainer from '../App'
+import CopyContainer from '../CopyContainer'
 
 export { CopyContainer }
