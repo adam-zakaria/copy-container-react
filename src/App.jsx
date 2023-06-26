@@ -5,7 +5,7 @@ import './App.css'
 
 function App(){
   return(
-    <CopyContainer lang='python' highlight={true} copyText='Copy Code' copiedText='Copied!'>
+    <CopyContainer lang='python' highlight={true} copyText='' copiedText=''>
 {`import requests
 from bs4 import BeautifulSoup
 
