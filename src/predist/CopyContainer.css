@@ -587,11 +587,6 @@ video {
   color: rgb(217 217 227 / var(--tw-text-opacity));
 }
 
-.text-\[\#F824e2\] {
-  --tw-text-opacity: 1;
-  color: rgb(248 36 226 / var(--tw-text-opacity));
-}
-
 #root {
   margin: 0 auto;
 }
