@@ -1,4 +1,6 @@
-This is a clone of the code component used by ChatGPT for code responses.
+Use this component to display code with syntax highlighting and a clipboard user's can click to copy the code to their clipboard. The design is based on OpenAI's component in ChatGPT, and can be styled further.
+
+The component can also be used to display text without syntax highlighting.
 
 Here's an example of the component in use:
 
@@ -26,8 +28,11 @@ Your text needs to be within braces (to start a 'jsx expression' AKA javascript)
 To use a different style import one from this link:
 https://github.com/highlightjs/highlight.js/tree/main/src/styles
 like so:
-`import 'highlight.js/styles/stackoverflow-dark.css';`
+```css
+import 'highlight.js/styles/stackoverflow-dark.css';
+```
 
+# Override css 
 Use the following classes in your own css to style parts of the UI
 .text-lang, .text-copy, .top-bar, .code-body, .check, .clipboard Let me know if anything should be added. Here's an example:
 
