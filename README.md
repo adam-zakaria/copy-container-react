@@ -41,7 +41,7 @@ import { CopyContainer } from 'copy-container-react'
 
 function App(){
   return(
-    <CopyContainer lang='python' highlight={true} copyText='' copiedText=''>
+    <CopyContainer lang='python' highlight={true} copyText='Copy :)' copiedText='Yay :)'>
 {`import requests
 from bs4 import BeautifulSoup
 
@@ -74,7 +74,7 @@ To use a different style from the default, import one from this link:
 https://github.com/highlightjs/highlight.js/tree/main/src/styles
 like so:
 ```css
-import 'highlight.js/styles/stackoverflow-dark.css';
+import 'highlight.js/styles/a11y-light.css';
 ```
 Syntax highlighting styles and overriding CSS will likely interfere with each other so be careful if you choose to do both.
 
