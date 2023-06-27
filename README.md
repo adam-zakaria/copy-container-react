@@ -1,10 +1,10 @@
 # Introduction
-Use this component to display code with syntax highlighting and a clipboard user's can click to copy the code to their clipboard. The design is based on OpenAI's component in ChatGPT, and can be styled further.
+Use this component to display code with syntax highlighting and a clipboard users can click to copy the code to their clipboard. The design is based on OpenAI's component in ChatGPT, and can be styled further.
 
 The component can also be used to display text without syntax highlighting.
 
 # How it looks
-![basic]()
+![basic](https://github.com/adam-zakaria/try/blob/main/screenshots/basic.png?raw=true)
 
 
 # Usage
