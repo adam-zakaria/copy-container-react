@@ -31,7 +31,9 @@ crawl('http://www.blogsite.com')
 } 
 ```
 
-Your text needs to be within braces (to embed JS in JSX) within grave accent marks (to start a multiline string) and needs to be a child of CopyContainer, as shown above. All props can be omitted. Here's an example which uses all the props:
+Your text needs to be within braces (to embed JS in JSX) within grave accent marks (to start a multiline string) and needs to be a child of CopyContainer, as shown above. Spacing (tabs, index, new lines, etc.) in the multi-line string is preserved. It would be nice if the pasted text could start on the line *after* the grave accent so it would look nice in the code, but an extra new line would appear in your UI. The existing solution is likely the best we can do :)
+
+All props can be omitted. Here's an example which uses all the props:
 ```javascript
 function App(){
   return(
@@ -53,12 +55,6 @@ crawl('http://www.blogsite.com')
 } 
 ```
 
-To use a different style import one from this link:
-https://github.com/highlightjs/highlight.js/tree/main/src/styles
-like so:
-```css
-import 'highlight.js/styles/stackoverflow-dark.css';
-```
 
 # Props
 
@@ -69,6 +65,13 @@ import 'highlight.js/styles/stackoverflow-dark.css';
 | `copyText` | Boolean | `Copy Code` | No | Text beside the clipboard before it is clicked. |
 | `copiedText` | Boolean | `Copied!` | No | Text beside the clipboard after it is clicked. |
 
+# Syntax highlighting styles
+To use a different style from the default import one (at the top of the file that uses this component) from this link:
+https://github.com/highlightjs/highlight.js/tree/main/src/styles
+like so:
+```css
+import 'highlight.js/styles/stackoverflow-dark.css';
+```
 
 # Override CSS
 Use the following classes in your own css to style parts of the UI.
