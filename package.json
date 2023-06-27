@@ -13,7 +13,9 @@
     "component",
     "code-component",
     "styleable-component",
-    "text-display"
+    "copy",
+    "code",
+    "text"
   ],
   "scripts": {
     "dev": "vite",
