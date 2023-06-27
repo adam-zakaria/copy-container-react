@@ -76,6 +76,7 @@ like so:
 ```css
 import 'highlight.js/styles/stackoverflow-dark.css';
 ```
+Syntax highlighting styles and overriding CSS will likely interfere with each other so be careful if you choose to do both.
 
 # Override CSS
 Use the following classes in your own css to style parts of the UI.
@@ -83,7 +84,9 @@ Use the following classes in your own css to style parts of the UI.
 .text-lang{}, .text-copy{}, .top-bar{}, .code-body{}, .check{}, .clipboard{}
 ```
 
-Let me know if anything should be added. Here's an example of the CSS used for the screenshot with the green top bar in the 'How it looks section:
+Let me know if anything should be added. If you want to style an element yourself you could use devtools to figure out a css selector.
+
+Here's an example of the CSS used for the screenshot with the green top bar in the 'How it looks' section:
 
 ```css
 .clipboard{
