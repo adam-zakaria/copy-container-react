@@ -94,6 +94,6 @@ function CopyContainer(props) {
     </>
   );
 }
-CopyContainer.defaultProps = { highlight: true, copyText: 'Copy Code', copiedText: 'Copied!' }
+CopyContainer.defaultProps = { lang: '', highlight: true, copyText: 'Copy Code', copiedText: 'Copied!' }
 
 export default CopyContainer;

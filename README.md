@@ -31,7 +31,27 @@ crawl('http://www.blogsite.com')
 } 
 ```
 
-Your text needs to be within braces (to start a 'jsx expression' AKA javascript) within grave accent marks (to start a multiline string) and needs to be a child of Copyontainer, as shown above. 
+Your text needs to be within braces (to embed JS in JSX) within grave accent marks (to start a multiline string) and needs to be a child of CopyContainer, as shown above. Passing a string to lang tells the syntax highlighter the language and displays the language in the top left corner. If props is omitted, the highlighter will try to autodetect the language. All props can be omitted. Here's an example which uses all the props:
+```javascript
+function App(){
+  return(
+    <CopyContainer lang='python'>
+{`import requests
+from bs4 import BeautifulSoup
+
+def crawl(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    for title in soup.find_all('h2'):  # assuming titles are within h2 tags
+        print(title.get_text())
+
+crawl('http://www.blogsite.com')
+`}
+  </CopyContainer>
+  ) 
+} 
+```
 
 To use a different style import one from this link:
 https://github.com/highlightjs/highlight.js/tree/main/src/styles
@@ -39,6 +59,16 @@ like so:
 ```css
 import 'highlight.js/styles/stackoverflow-dark.css';
 ```
+
+# Props
+
+| Name  | Type  | Default | Required | Description |
+|-------|-------|---------|----------|-------------|
+| `lang` | String |  `'default value'` | No  | Display the a string in the top left corner and pass the language to highlight.js so it doesn't need to guess. |
+| `highlight` | Boolean |  `true`  | No | Enable syntax highlighting. |
+| `copyText` | Boolean | `Copy Code` | No | Text beside the clipboard. |
+| `copiedText` | Boolean | `Copied!` | No | Text beside the clipboard after it is clicked. |
+
 
 # Override CSS
 Use the following classes in your own css to style parts of the UI.
