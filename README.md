@@ -66,10 +66,10 @@ crawl('http://www.blogsite.com')
 |-------|-------|---------|----------|-------------|
 | `lang` | String |  `''` | No  | Display the a string in the top left corner and pass the language to highlight.js so it doesn't need to guess. |
 | `highlight` | Boolean |  `true`  | No | Enable syntax highlighting. |
-| `copyText` | Boolean | `Copy Code` | No | Text beside the clipboard before it is clicked. |
-| `copiedText` | Boolean | `Copied!` | No | Text beside the clipboard after it is clicked. |
+| `copyText` | String | `Copy Code` | No | Text beside the clipboard before it is clicked. |
+| `copiedText` | String | `Copied!` | No | Text beside the clipboard after it is clicked. |
 
-# Syntax highlighting styles
+# Choose a syntax highlighting style
 To use a different style from the default, import one from this link:
 https://github.com/highlightjs/highlight.js/tree/main/src/styles
 like so:
