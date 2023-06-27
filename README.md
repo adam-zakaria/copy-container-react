@@ -4,7 +4,9 @@ Use this component to display code with syntax highlighting and a clipboard user
 The component can also be used to display text without syntax highlighting.
 
 # How it looks
-![basic](https://github.com/adam-zakaria/try/blob/main/screenshots/basic.png?raw=true)
+![basic](https://github.com/adam-zakaria/try/blob/main/screenshots/smaller/basic.png?raw=true)
+![difftheme](https://github.com/adam-zakaria/try/blob/main/screenshots/smaller/different_theme.png?raw=true)
+![text](https://github.com/adam-zakaria/try/blob/main/screenshots/smaller/text.png?raw=true)
 
 
 # Usage
