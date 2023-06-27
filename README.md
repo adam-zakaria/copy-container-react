@@ -11,6 +11,8 @@ The component can also be used to display text without syntax highlighting.
 
 # Usage
 ```javascript
+import { CopyContainer } from 'copy-container-react'
+
 function App(){
   return(
     <CopyContainer lang='python'>
@@ -35,6 +37,8 @@ Your text needs to be within braces (to embed JS in JSX) within grave accent mar
 
 All props can be omitted. Here's an example which uses all the props:
 ```javascript
+import { CopyContainer } from 'copy-container-react'
+
 function App(){
   return(
     <CopyContainer lang='python' highlight={true} copyText='' copiedText=''>
@@ -66,7 +70,7 @@ crawl('http://www.blogsite.com')
 | `copiedText` | Boolean | `Copied!` | No | Text beside the clipboard after it is clicked. |
 
 # Syntax highlighting styles
-To use a different style from the default import one (at the top of the file that uses this component) from this link:
+To use a different style from the default, import one from this link:
 https://github.com/highlightjs/highlight.js/tree/main/src/styles
 like so:
 ```css
