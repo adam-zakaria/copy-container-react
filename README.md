@@ -34,10 +34,13 @@ like so:
 import 'highlight.js/styles/stackoverflow-dark.css';
 ```
 
-# Override css 
+# Override CSS
 Use the following classes in your own css to style parts of the UI
+```css
+.text-lang{}, .text-copy{}, .top-bar{}, .code-body{}, .check{}, .clipboard{}
+```
 
-.text-lang{}, .text-copy{}, .top-bar{}, .code-body{}, .check{}, .clipboard{} Let me know if anything should be added. Here's an example:
+Let me know if anything should be added. Here's an example of overriding CSS:
 
 ```css
 .clipboard{
@@ -51,6 +54,8 @@ Use the following classes in your own css to style parts of the UI
 }
 ```
 
-The syntax highlighting library used by this component is highlight.js and the style is stackoverflow-dark.css. Highlight.js tries to automatically detect the programming language of the code, but it hasn't been correct in my experience. See their docs for more information (you can examine the highlightjs object to see confidence scores the library gives for its predictions) Also, the highlighting seems a bit sparse in that.....
+# Additional Information
+The syntax highlighting library used by this component is highlight.js and the style is stackoverflow-dark.css. Highlight.js tries to automatically detect the programming language of the code, but it hasn't been correct in my experience, though I could be doing something wrong and appreciate their library very much. See their docs for more information (you can examine the highlightjs object to see confidence scores the library gives for its predictions).
 
-Please email adam.p.zakaria@gmail.com with any questions :)
+# Contact
+Please open an issue on github or email adam.p.zakaria at gmail dot com with any questions or comments :)
