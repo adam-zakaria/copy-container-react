@@ -28,8 +28,8 @@ function Text(props) {
   }, []);
 
   return (
-    <pre className='rounded-b-md'>
-      <code ref={codeRef} className={`text-body rounded-b-md language-${props.lang}`}>
+    <pre className='text-body rounded-b-md'>
+      <code ref={codeRef} className={`rounded-b-md language-${props.lang}`}>
         <div className='p-[12px] rounded-b-md inner'>
           {props.children}
         </div>
