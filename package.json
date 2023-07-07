@@ -24,8 +24,7 @@
     "preview": "vite preview",
     "babel": "rm -rf src/dist && NODE_ENV=production babel src/CopyContainer.jsx --out-dir src/dist --copy-files"
   },
-  "main": "src/dist/index.js",
-  "module": "src/dist/index.js",
+  "main": "src/dist/CopyContainer.js",
   "dependencies": {
     "core-js": "^3.19.3",
     "highlight.js": "^11.8.0",
