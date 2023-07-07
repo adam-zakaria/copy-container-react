@@ -8,7 +8,7 @@ where package.json has:
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "babel": "rm -rf src/dist && NODE_ENV=production babel src/predist --out-dir src/predist --copy-files"
+    "babel": "rm -rf src/dist && NODE_ENV=production babel src/predist --out-dir src/dist --copy-files"
   },
   ```
 
