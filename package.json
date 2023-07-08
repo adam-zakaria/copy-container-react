@@ -2,7 +2,6 @@
   "name": "copy-container-react",
   "private": false,
   "version": "1.0.3",
-  "type": "module",
   "license": "MIT",
   "keywords": [
     "code-display",
@@ -27,10 +26,14 @@
   "main": "src/dist/CopyContainer.js",
   "dependencies": {
     "core-js": "^3.19.3",
+    "css-loader": "^6.8.1",
     "highlight.js": "^11.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.5",
