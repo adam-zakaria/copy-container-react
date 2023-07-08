@@ -8,12 +8,17 @@ where package.json has:
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "babel": "rm -rf src/dist && NODE_ENV=production babel src/predist --out-dir src/dist --copy-files"
+    "babel": "rm -rf src/dist && NODE_ENV=production babel src/predist --out-dir src/dist --copy-files",
+    "webpack": "npx webpack"
   },
   ```
 
 build the tailwindcss
 `npx tailwindcss -i ./src/App.css -o ./src/predist/App.css; npx tailwindcss -i ./src/CopyContainer.css -o ./src/predist/CopyContainer.css`
+
+For package bundling (css loading):
+where webpack.config.js is configured correctly.
+npx webpack
 
 In this repo, to increment the minor version and push to npm:
 `alias np="npm version patch; npm publish"`
