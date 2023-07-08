@@ -1,7 +1,7 @@
 {
   "name": "copy-container-react",
-  "private": false,
   "version": "1.0.6",
+  "type": "module",
   "license": "MIT",
   "keywords": [
     "code-display",
