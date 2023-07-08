@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import CopyContainer from './CopyContainer';
-import './dist/App.css'
 import './App.css'
 
 function App(){

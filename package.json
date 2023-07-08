@@ -21,9 +21,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "babel": "rm -rf src/dist && NODE_ENV=production babel src/CopyContainer.jsx --out-dir src/dist --copy-files"
+    "babel": "rm -rf src/dist && NODE_ENV=production babel src/CopyContainer.jsx --out-file src/index.js --copy-files"
   },
-  "main": "src/dist/CopyContainer.js",
+  "main": "src/index.js",
   "dependencies": {
     "core-js": "^3.19.3",
     "css-loader": "^6.8.1",

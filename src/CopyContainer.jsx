@@ -2,7 +2,6 @@ import { useState } from 'react'
 import React, { useEffect, useRef } from 'react';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/stackoverflow-dark.css';
-import './dist/CopyContainer.css'
 import './CopyContainer.css'
 let check =
   <svg className='check h-[50%]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D9D9E3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
