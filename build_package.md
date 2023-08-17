@@ -1,4 +1,4 @@
-# Build workflow
+# Build the package
 These are instructions to build the CopyContainer npm library
 
  `npm run babel`
@@ -19,6 +19,8 @@ build the tailwindcss
 For package bundling (css loading):
 where webpack.config.js is configured correctly.
 npx webpack
+
+# Publish to npm
 
 In this repo, to increment the minor version and push to npm:
 `alias np="npm version patch; npm publish"`
