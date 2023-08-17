@@ -1,3 +1,6 @@
+# NOTICE
+*This is not working!! I can't get this component bundled correctly. If you can help please contact me!*
+
 # Introduction
 Use this component to display code with syntax highlighting and a clipboard users can click to copy the code to their clipboard. The design is based on OpenAI's component in ChatGPT, and can be styled further.
 
