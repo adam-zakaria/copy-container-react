@@ -1,7 +1,38 @@
 {
   "name": "copy-container-react",
   "version": "1.0.8",
-  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build-css": "postcss src/App.scss -o src/postcss_output.css",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "main": "src/rollup_output.js",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "regenerator-runtime": "^0.13.9",
+    "core-js": "^3.19.3",
+    "css-loader": "^6.8.1",
+    "highlight.js": "^11.8.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4",
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@svgr/webpack": "^8.0.1",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.2.0"
+  },
   "license": "MIT",
   "keywords": [
     "code-display",
@@ -16,36 +47,5 @@
     "copy",
     "code",
     "text"
-  ],
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "babel": "rm -rf src/dist && NODE_ENV=production babel src/CopyContainer.jsx --out-file src/dist/CopyContainer.js"
-  },
-  "main": "src/dist/CopyContainer.js",
-  "dependencies": {
-    "core-js": "^3.19.3",
-    "css-loader": "^6.8.1",
-    "highlight.js": "^11.8.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "regenerator-runtime": "^0.13.9",
-    "style-loader": "^3.3.3",
-    "webpack": "^5.88.1",
-    "webpack-cli": "^5.1.4"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.22.5",
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "@svgr/webpack": "^8.0.1",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^3.1.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
-    "vite": "^4.2.0"
-  }
+  ]
 }
