@@ -1,6 +1,6 @@
 {
   "name": "copy-container-react",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
